@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .box {
+        width: 600px;
+        height: 380px;
+        /* background-color:rgba(0,0,0,0); */
+    }
+    body {
+        /* background-color:black; */
+        overflow:hidden;
+    }
+</style>
+
+<body>
+    <div class="box"></div>
+    <script src="../js/echarts.min.js"></script>
+    <script>
+        var object = echarts.init(document.querySelector(".box"));
+        const labelRight = {
+            position: 'right'
+        };
+        option = {
+            title: {
+                text: 'Bar Chart with Negative Value'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                type: 'shadow'
+                }
+            },
+            grid: {
+                top: 80,
+                bottom: 30
+            },
+            xAxis: {
+                type: 'value',
+                position: 'top',
+                splitLine: {
+                lineStyle: {
+                    type: 'dashed'
+                }
+                }
+            },
+            yAxis: {
+                type: 'category',
+                axisLine: { show: false },
+                axisLabel: { show: false },
+                axisTick: { show: false },
+                splitLine: { show: false },
+                data: [
+                'ten',
+                'nine',
+                'eight',
+                'seven',
+                'six',
+                'five',
+                'four',
+                'three',
+                'two',
+                'one'
+                ]
+            },
+            series: [
+                {
+                name: 'Cost',
+                type: 'bar',
+                stack: 'Total',
+                label: {
+                    show: true,
+                    formatter: '{b}'
+                },
+                data: [
+                    { value: -0.07, label: labelRight },
+                    { value: -0.09, label: labelRight },
+                    0.2,
+                    0.44,
+                    { value: -0.23, label: labelRight },
+                    0.08,
+                    { value: -0.17, label: labelRight },
+                    0.47,
+                    { value: -0.36, label: labelRight },
+                    0.18
+                ]
+                }
+            ]
+        };
+        object.setOption(option);
+    </script>
+</body>
+</html>
