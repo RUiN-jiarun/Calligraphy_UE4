@@ -25,7 +25,7 @@ void ABezierActor::Tick(float DeltaTime)
 
 }
 
-TArray<FVector2D> ABezierActor::BezierCurve(TArray<FVector2D> src)
+TArray<FVector> ABezierActor::BezierCurve(TArray<FVector> src)
 {
 	// Ignore the dot version
 	if (src.Num() < 1)
@@ -36,7 +36,7 @@ TArray<FVector2D> ABezierActor::BezierCurve(TArray<FVector2D> src)
 	// t-step
 	const float step = 0.01;
 	// return value
-	TArray<FVector2D> res;
+	TArray<FVector> res;
 
 	// linear version
 	if (src.Num() == 1)
@@ -49,8 +49,8 @@ TArray<FVector2D> ABezierActor::BezierCurve(TArray<FVector2D> src)
 	}
 
 	// quadratic version
-	TArray<FVector2D> src1;
-	TArray<FVector2D> src2;
+	TArray<FVector> src1;
+	TArray<FVector> src2;
 	
 	for (int32 i = 0; i < src.Num() - 1; i++)
 	{
@@ -65,12 +65,12 @@ TArray<FVector2D> ABezierActor::BezierCurve(TArray<FVector2D> src)
 	src2.RemoveAt(0);
 
 	// recursive
-	TArray<FVector2D> pln1 = BezierCurve(src1);
-	TArray<FVector2D> pln2 = BezierCurve(src2);
+	TArray<FVector> pln1 = BezierCurve(src1);
+	TArray<FVector> pln2 = BezierCurve(src2);
 
 	for (float t = 0; t < 1; t += step)
 	{
-		FVector2D tmp;
+		FVector tmp;
 		tmp = ((1.0 - t) * pln1[FMath::RoundToInt(1.0 / step * t)])
 			+ (t * pln2[FMath::RoundToInt(1.0 / step * t)]);
 		res.Add(tmp);

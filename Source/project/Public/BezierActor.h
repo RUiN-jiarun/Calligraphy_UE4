@@ -24,5 +24,5 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable, Category = "BPFunc_Lib")
-		TArray<FVector2D> BezierCurve(TArray<FVector2D> src);
+		TArray<FVector> BezierCurve(TArray<FVector> src);
 };
